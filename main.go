@@ -15,14 +15,15 @@ type Payload struct {
 	Password string `json:"password"`
 }
 
+// deepcode ignore HardcodedPassword: not a real password, just for template demo purposes
 const password = "super_secret"
 
 func hello(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	apiKey := "ASIAY34FZKBOKMUTVV7A"
 	name := p.ByName("name")
 	payload := Payload{
-		Message:  "Hello " + name,
-		Password: apiKey,
+		Message: "Hello " + name,
+		// deepcode ignore HardcodedPassword: not a real password, just for template demo purposes
+		Password: password,
 	}
 
 	data := []byte("example input for hash")
