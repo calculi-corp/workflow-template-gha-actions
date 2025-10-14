@@ -19,6 +19,9 @@ jobs:
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v3
+        with:
+          repository: calculi-corp/workflow-template-gha-actions
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Workflow detail api request
         shell: bash
