@@ -19,9 +19,6 @@ jobs:
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v3
-        with:
-          repository: calculi-corp/workflow-template-gha-actions
-          token: ${{ secrets.HJS_GITHUB_PAT }}
 
       - name: Workflow detail api request
         shell: bash
@@ -341,9 +338,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-        with:
-          repository: calculi-corp/workflow-template-gha-actions
-          token: ${{ secrets.HJS_GITHUB_PAT }}
 
       - name: Register Build Artifact
         id: artifact
