@@ -1,4 +1,4 @@
-# template-gha-actions
+# workflow-template-gha-actions
 # Daily Routine Check Workflow
 
 - **Purpose:** Automated daily scan and validation of the repository using a scheduled GitHub Actions workflow.
