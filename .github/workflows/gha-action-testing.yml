@@ -39,6 +39,6 @@ jobs:
         uses: cloudbees-io-gha/register-build-artifact@v3
         with:
           name: "demo-go-service"
-          version: 1.0
+          version: "tagGha"
           url: "020229604682.dkr.ecr.us-east-1.amazonaws.com/throwaway/actions/vulnerable-image:tagGha"
-          cloudbees-url: "https://api.saas-preprod.beescloud.com"   
+          cloudbees-url: "https://api.saas-preprod.beescloud.com"  
