@@ -1,0 +1,51 @@
+name: Perforce Klocwork scan 
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write      # needed for OIDC token access
+  contents: read       # needed for actions/checkout
+
+jobs:
+  klocwork-codescan:
+    runs-on: ubuntu-latest
+    steps:
+      
+         
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+
+      - name: Print GITHUB_RUN_ID
+        shell: bash
+        run: |
+          echo "Ref name is $GITHUB_RUN_ID"
+          echo "Source is ${{ github.server_url }}/${{ github.repository }}"
+          echo "Subject is $GITHUB_WORKFLOW_REF|${{ github.run_id }}|${{ github.run_attempt }}|${{ github.run_number }}"
+          echo "Job is $GITHUB_JOB"
+          echo "Step id is ${{ steps.internal.id }}"
+          curl checkip.amazonaws.com
+      - name: Get runner public IP
+        id: get_ip
+        shell: bash
+        run: |
+          RUNNER_IP=$(curl -s icanhazip.com)
+          echo "Runner's Public IP: $RUNNER_IP"
+          echo "Waiting 2 minutes for SG update..."
+          sleep 120
+          echo "RUNNER_IP=$RUNNER_IP" >> $GITHUB_ENV
+      - name: Klocwork scan
+        uses: cloudbees-io-gha/perforce-klocwork-sast-publish@v1
+        with:
+          cloudbees-url: ${{ vars.CLOUDBEES_PREPROD_API_URL }}
+          # Insert the runner's public IP dynamically into the KLOCWORK_URL
+          url: ${{ vars.KLOCWORK_URL }}  # replace 'port' with your actual Klocwork server port
+          token: ${{ secrets.KLOCWORK_APP_TOKEN }}
+          license-host: 54.162.178.237
+          username: ssm-user
+          build-directory: /app
+          build-tool: maven
+          build-directory: /app
+          build-tool: ${{ vars.KLOCWORK_BUILD_TOOL }}
