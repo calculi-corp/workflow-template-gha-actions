@@ -3,7 +3,7 @@ name: Perforce Klocwork scan
 on:
   push:
     branches:
-      - main
+      - klocwork-test
 
 permissions:
   id-token: write      # needed for OIDC token access
@@ -47,5 +47,3 @@ jobs:
           username: ssm-user
           build-directory: /app
           build-tool: maven
-          build-directory: /app
-          build-tool: ${{ vars.KLOCWORK_BUILD_TOOL }}
