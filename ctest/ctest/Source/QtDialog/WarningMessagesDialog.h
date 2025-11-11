@@ -1,0 +1,70 @@
+/* Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
+   file LICENSE.rst or https://cmake.org/licensing for details.  */
+#pragma once
+
+#include "QCMake.h"
+#include <QDialog>
+#include <QWidget>
+
+#include "ui_WarningMessagesDialog.h"
+
+/**
+ * Dialog window for setting the warning message related options.
+ */
+class WarningMessagesDialog
+  : public QDialog
+  , public Ui_MessagesDialog
+{
+  Q_OBJECT
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
+  using CheckState = Qt::CheckState;
+#else
+  using CheckState = int;
+#endif
+
+public:
+  WarningMessagesDialog(QWidget* prnt, QCMake* instance);
+
+private slots:
+  /**
+   * Handler for the accept event of the ok/cancel button box.
+   */
+  void doAccept();
+
+  /**
+   * Handler for checked state changed event of the suppress developer warnings
+   * checkbox.
+   */
+  void doSuppressDeveloperWarningsChanged(CheckState state);
+  /**
+   * Handler for checked state changed event of the suppress deprecated
+   * warnings checkbox.
+   */
+  void doSuppressDeprecatedWarningsChanged(CheckState state);
+
+  /**
+   * Handler for checked state changed event of the developer warnings as
+   * errors checkbox.
+   */
+  void doDeveloperWarningsAsErrorsChanged(CheckState state);
+  /**
+   * Handler for checked state changed event of the deprecated warnings as
+   * errors checkbox.
+   */
+  void doDeprecatedWarningsAsErrorsChanged(CheckState state);
+
+private:
+  QCMake* cmakeInstance;
+
+  /**
+   * Set the initial values of the widgets on this dialog window, using the
+   * current state of the cache.
+   */
+  void setInitialValues();
+
+  /**
+   * Setup the signals for the widgets on this dialog window.
+   */
+  void setupSignals();
+};
