@@ -29,6 +29,7 @@ jobs:
           enable-agent-scan: false
           build-spec-file: /tmp/kwinject.out
           tables-directory: /tmp/kwinjecttables
+          scan-mode: PULL
           ref: klocwork-test
       - id: print-outputs-from-klocwork-step
         name: print outputs from upstream klocwork step
