@@ -1,0 +1,42 @@
+name: cb-explicit-klocwork-workflow
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+on:
+  workflow_dispatch:
+permissions:
+  scm-token-own: read
+  scm-token-org: read
+  id-token: write
+jobs:
+  build:
+    steps:
+      - name: checkout-source-code
+        uses: cloudbees-io/checkout@v1
+
+          
+      - name: Run Klocwork
+        id: klocwork-step
+        uses: cloudbees-io/perforce-klocwork-sast-plugin@v2
+        with:
+          url: ${{ vars.KLOCWORK_URL }}
+          token: ${{ secrets.KLOCWORK_APP_TOKEN }}
+          username: ${{ vars.KLOCWORK_USERNAME }}
+          project-name: test-cmake-1
+          build-directory: ctest
+          build-tool: cmake
+          license-host: 54.162.178.237
+          build-options: make  -j14
+          enable-agent-scan: false
+          build-spec-file: /tmp/kwinject.out
+          tables-directory: /tmp/kwinjecttables
+          ref: main
+      - id: print-outputs-from-klocwork-step
+        name: print outputs from upstream klocwork step
+        uses: docker://alpine:latest
+        run: |
+          echo "Outputs from upstream klocwork step:"
+          echo "Critical count: ${{ steps.klocwork-step.outputs.critical-count }}"
+          echo "Very high count: ${{ steps.klocwork-step.outputs.very-high-count }}"
+          echo "High count: ${{ steps.klocwork-step.outputs.high-count }}"
+          echo "Medium count: ${{ steps.klocwork-step.outputs.medium-count }}"
+          echo "Low count: ${{ steps.klocwork-step.outputs.low-count }}"
