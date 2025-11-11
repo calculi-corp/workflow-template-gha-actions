@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.KLOCWORK_APP_TOKEN }}
           username: ${{ vars.KLOCWORK_USERNAME }}
           project-name: test-cmake-1
-          build-directory: ctest
+          build-directory: ctest/ctest
           build-tool: cmake
           license-host: 54.162.178.237
           build-options: make  -j14
