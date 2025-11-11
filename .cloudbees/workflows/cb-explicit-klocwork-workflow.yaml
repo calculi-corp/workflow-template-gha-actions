@@ -29,7 +29,7 @@ jobs:
           enable-agent-scan: false
           build-spec-file: /tmp/kwinject.out
           tables-directory: /tmp/kwinjecttables
-          ref: main
+          ref: klocwork-test
       - id: print-outputs-from-klocwork-step
         name: print outputs from upstream klocwork step
         uses: docker://alpine:latest
