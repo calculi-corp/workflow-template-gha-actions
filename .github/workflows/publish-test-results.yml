@@ -20,7 +20,7 @@ jobs:
           ls -lrt
 
       - name: Publish test results in Cloudbees platform
-        uses: cloudbees-io-gha/publish-test-results@v2
+        uses: cloudbees-io-gha/publish-test-results@CBP-24884
         with:
           test-type: JUNIT
           results-path: target/surefire-reports/*
