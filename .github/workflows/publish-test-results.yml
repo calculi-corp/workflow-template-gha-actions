@@ -27,4 +27,3 @@ jobs:
         with:
           test-type: JUNIT
           results-path: target/surefire-reports/*
-
