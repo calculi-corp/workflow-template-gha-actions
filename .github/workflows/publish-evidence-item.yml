@@ -1,6 +1,9 @@
 name: Publish evidence item
 
-on: [workflow_dispatch]
+on:
+  push:
+    branches:
+      - '**'
 
 jobs:
   build:
