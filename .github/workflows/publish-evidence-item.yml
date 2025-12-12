@@ -27,5 +27,4 @@ jobs:
           # cloudbees-pat: ${{ secrets.PROD_PAT }}
           # The content to be published as evidence.
           content: "Evidence : PROD-Validation-test"
-          # The format of the evidence content.
           # format: # optional
