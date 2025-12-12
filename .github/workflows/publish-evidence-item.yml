@@ -13,7 +13,7 @@ jobs:
       contents: read
     steps:
       - name : Step-1
-        run: echo "hello from step 1"
+        run: echo "hello from Akash"
         
       - name: Checkout
         uses: actions/checkout@v3
