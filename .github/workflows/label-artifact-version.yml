@@ -25,7 +25,7 @@ jobs:
           url: "ghcr.io/haakaashbee/testaction/prod-artifact:latest"
           digest: "sha256:566b1117a16243a43be01e378a20ee823c95d00cd5f3231ad4d168f53d99d9d8"
           type: "docker"
-          label: 'QA,production,preprod'
+          label: 'QA,Production,Preprod'
 
       - name: Test output
         run: echo '${{ steps.artifact.outputs.cbp_artifact_id }}'
