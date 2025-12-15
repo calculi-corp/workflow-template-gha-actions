@@ -1,6 +1,10 @@
 name: label-artifact-version
 
-on: [workflow_dispatch]
+# on: [workflow_dispatch]
+on:
+  push:
+    branches:
+      - '**'
 
 permissions:
   id-token: write
