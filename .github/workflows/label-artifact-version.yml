@@ -30,7 +30,7 @@ jobs:
         run: echo '${{ steps.artifact.outputs.cbp_artifact_id }}'
 
       - name: Add labels
-        uses: cloudbees-io-gha/label-artifact-version@CBP-27568
+        uses: cloudbees-io-gha/label-artifact-version@v1
         with:
           artifact-id: ${{ steps.artifact.outputs.cbp_artifact_id }}
           labels: "stagging"
