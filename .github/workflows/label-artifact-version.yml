@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Register Build Artifact
         id: artifact
         uses: cloudbees-io-gha/register-build-artifact@v3
