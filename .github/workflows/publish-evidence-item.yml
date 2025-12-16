@@ -26,5 +26,5 @@ jobs:
           # The CloudBees platform personal access token.
           # cloudbees-pat: ${{ secrets.PROD_PAT }}
           # The content to be published as evidence.
-          content: "Evidence : PROD-Validation-test"
+          content: "Evidence : Public image"
           # format: # optional
