@@ -20,7 +20,8 @@ jobs:
 
       - name: Register Deployed Artifact
         id: deployment
-        uses: cloudbees-io-gha/register-deployed-artifact@CBP-31240
+        using: docker
+        image: ghcr.io/perebueno/gha-register-deployed-artifact:local
         with:
           artifact-id: 87ace777-ab20-4867-ac3f-ad5c28f46a29
           target-environment: preprod
